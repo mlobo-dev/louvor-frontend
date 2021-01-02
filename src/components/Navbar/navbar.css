@@ -5,3 +5,14 @@
 .img-logo {
   width: 80px;
 }
+
+a {
+  color: #fff;
+
+  transition: 0.3s ease-in-out;
+}
+
+a:hover {
+  color: #ffb400;
+  text-decoration: none;
+}

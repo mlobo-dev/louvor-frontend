@@ -7,9 +7,9 @@ function Navbar() {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light ">
-        <img className="img-logo" src={logo} />
+        <img className="img-logo" src={logo} alt="Logomarca" />
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -17,9 +17,9 @@ function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <Link className="nav-item active ml-2" to="/musicas">
             Músicas
           </Link>

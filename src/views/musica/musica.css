@@ -1,0 +1,8 @@
+.action-item {
+  list-style: none;
+  margin-left: 5px;
+}
+ul {
+  display: flex;
+  justify-content: space-around;
+}
