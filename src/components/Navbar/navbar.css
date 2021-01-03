@@ -6,13 +6,13 @@
   width: 80px;
 }
 
-a {
+.nav-item {
   color: #fff;
 
   transition: 0.3s ease-in-out;
 }
 
-a:hover {
+.nav-item:hover {
   color: #ffb400;
   text-decoration: none;
 }
