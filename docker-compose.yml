@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  react:
+    build:
+      context: '/'
+    image: react-app
+    env_file:
+      - './.env'
+    ports:
+      - 5555:3000
