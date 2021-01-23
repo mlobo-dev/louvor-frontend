@@ -37,9 +37,8 @@ function CadastroMusica(props) {
   }
 
   function salvar() {
-    debugger;
     api
-      .post('/itens', {
+      .post('/musicas', {
         id: idMusica ? idMusica : null,
         nome: nome,
         artista: artista,

@@ -27,9 +27,8 @@ function Musica() {
 
   async function deletar() {
     musicaService.deletarPeloId(musicaDeletar.id);
+    setMusicas(musicas.filter((musica) => musica.id !== musicaDeletar.id));
     mensagemSucesso('Musica deletada com sucesso!');
-    listarMusicas();
-    renderTable();
   }
 
   function renderTable() {

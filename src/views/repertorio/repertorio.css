@@ -1,0 +1,37 @@
+.action-itens {
+  display: flex;
+  justify-content: space-around;
+  border: none;
+}
+
+.action-itens a {
+  text-decoration: none;
+  color: black;
+  transition: 0.3s ease-in-out;
+}
+
+.action-itens a:hover {
+  color: #f83036;
+}
+
+.btn-musica :hover {
+  color: white;
+}
+
+.loading {
+  display: flex;
+  margin: auto;
+}
+
+.btn-cadastro a {
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-cadastro:hover {
+  background-color: #f83036;
+}
+
+.btn-musica {
+  margin-left: 1%;
+}

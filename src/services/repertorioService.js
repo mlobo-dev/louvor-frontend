@@ -1,11 +1,11 @@
 import api from '../configuration/api';
 import ErroValidacao from '../exceptions/ErroValidacao';
 import { mensagemErro } from '../components/toastr';
-const BASE_URI = '/musicas';
+const BASE_URI = '/repertorios';
 
-export async function buscarMusicaPeloId(idMusica) {
+export async function buscarPeloId(id) {
   return await api
-    .get(`${BASE_URI}/${idMusica}`)
+    .get(`${BASE_URI}/${id}`)
     .then((response) => {
       return response.data;
     })
@@ -25,8 +25,8 @@ export async function listarTudo() {
     });
 }
 
-export async function deletarPeloId(idMusica) {
-  api.delete(`${BASE_URI}/${idMusica}`).catch((error) => {
+export async function deletarPeloId(id) {
+  await api.delete(`${BASE_URI}/${id}`).catch((error) => {
     mensagemErro(error.message);
   });
 }
