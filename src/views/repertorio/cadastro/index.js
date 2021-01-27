@@ -43,12 +43,13 @@ function CadastroRepertorio(props) {
     }
   }
 
-  function adicionarMusicaSelecionada(e) {
-    debugger;
-    alert('assd', e);
-    // setMusicas(musicas.filter((musica) => musica.id !== musicaSelecionada.id));
-    // setMusicasSelecionadas(musicaSelecionada, ...musicasSelecionadas);
-  }
+  const selecionarMusica = (values) => {
+    setMusicas(values);
+  };
+
+  const atribuirMusicasSelecionadas = (values) => {
+    setMusicasSelecionadas(values);
+  };
   function salvar() {
     api
       .post('/repertorios', {
@@ -104,7 +105,7 @@ function CadastroRepertorio(props) {
               <input
                 className="form-control mr-sm-2"
                 type="search"
-                placeholder="Começe a digitar o nome de uma música ou cantor/artista/ministério"
+                placeholder="Começe a digitar o nome de uma música ou cantor/artista/ministério "
                 aria-label="Search"
                 onChange={(e) => atualizarOpcoes(e.target.value)}
               />
@@ -116,8 +117,11 @@ function CadastroRepertorio(props) {
 
             <PickList
               opcoes={musicas}
-              onClickOpcoes={adicionarMusicaSelecionada}
-              selecionados={musicasSelecionadas}
+              acaoOpcoes={selecionarMusica}
+              acaoSelecionadas={atribuirMusicasSelecionadas}
+              opcoesTitle={'Disponíveis'}
+              selecionadas={musicasSelecionadas}
+              selecionadasTitle={'Selecionadas'}
             />
           </div>
 
