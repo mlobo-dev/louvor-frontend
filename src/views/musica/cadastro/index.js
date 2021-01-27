@@ -7,6 +7,7 @@ import * as messages from '../../../components/toastr';
 import * as musicaService from '../../../services/musicaService';
 import './cadastro-musica.css';
 import { useSelector } from 'react-redux';
+import ReactPlayer from 'react-player';
 
 function CadastroMusica(props) {
   const [redirecionar, setRedirecionar] = useState(false);
@@ -143,6 +144,13 @@ function CadastroMusica(props) {
               />
             </div>
           </div>
+
+          {ReactPlayer.canPlay(urlVideo) && (
+            <div className="video-container">
+              <ReactPlayer url={urlVideo} />
+            </div>
+          )}
+
           <div className="buttons-group">
             <button
               type="button"
