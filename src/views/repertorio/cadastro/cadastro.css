@@ -1,0 +1,8 @@
+.card {
+  width: 60%;
+  display: flex;
+}
+
+.pick-list-area {
+  width: 100%;
+}

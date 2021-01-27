@@ -8,24 +8,28 @@ import './repertorio.css';
 function Repertorio() {
   const [repertorios, setRepertorios] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [repertorioDeletar, setRepertorioDeletar] = useState();
-  const [musicas, setMusicas] = useState([]);
+  const [repertorio, setRepertorio] = useState();
 
-  async function listarMusicas() {
+  async function listarRepertorios() {
     setLoading(true);
-    const musicasResult = await service.listarTudo();
+    const repertorios = await service.listarTudo();
     setTimeout(() => {
-      setRepertorios(musicasResult);
+      setRepertorios(repertorios);
       setLoading(false);
     }, 1000);
   }
 
   async function deletar() {
-    service.deletarPeloId(repertorioDeletar.id);
+    service.deletarPeloId(repertorio.id);
     setRepertorios(
-      repertorios.filter((musica) => musica.id !== repertorioDeletar.id)
+      repertorios.filter((repertorio) => repertorio.id !== repertorio.id)
     );
-    mensagemSucesso('Musica deletada com sucesso!');
+    mensagemSucesso('Repertório deletado com sucesso!');
+  }
+
+  async function buscarRepertorioPeloId(id) {
+    debugger;
+    setRepertorio(await service.buscarPeloId(id));
   }
 
   function renderTable() {
@@ -67,16 +71,16 @@ function Repertorio() {
                   </td>
                   <td>{repertorio.dataExecucao}</td>
                   <td className="action-itens">
-                    <Link to={`musicas/cadastro/${repertorio.id}`}>
+                    <Link to={`repertorios/cadastro/${repertorio.id}`}>
                       <i className="fas fa-pencil-alt"></i>
                     </Link>
 
                     <Link>
                       <i
                         id={repertorio.id}
-                        onClick={(e) => service.buscarPeloId(e.target.id)}
+                        onClick={(e) => buscarRepertorioPeloId(e.target.id)}
                         data-toggle="modal"
-                        data-target="#exampleModal"
+                        data-target="#modalExclusao"
                         className="fas fa-trash"
                       ></i>
                     </Link>
@@ -91,7 +95,7 @@ function Repertorio() {
   }
 
   useEffect(() => {
-    listarMusicas();
+    listarRepertorios();
   }, []);
 
   function tabelaRepertorios() {
@@ -112,7 +116,7 @@ function Repertorio() {
     return (
       <>
         <button type="button" className="btn btn-secondary mr-2 btn-cadastro">
-          <Link className="text-white " to="/musicas/cadastro">
+          <Link className="text-white " to="/repertorios/cadastro">
             Adicionar
           </Link>
         </button>
@@ -131,7 +135,7 @@ function Repertorio() {
 
       <div
         className="modal fade"
-        id="exampleModal"
+        id="modalExclusao"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -152,8 +156,8 @@ function Repertorio() {
               </button>
             </div>
             <div className="modal-body">
-              {repertorioDeletar &&
-                `Realmente deseja excluir a música ${repertorioDeletar.nome}?`}
+              {repertorio &&
+                `Realmente deseja excluir o repertório ${repertorio.nome}?`}
             </div>
             <div className="modal-footer">
               <button

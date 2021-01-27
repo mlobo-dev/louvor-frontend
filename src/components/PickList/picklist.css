@@ -1,0 +1,31 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.list-container {
+  display: flex;
+  min-width: 30%;
+  margin: 4%;
+  padding: 2%;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px 0.5;
+}
+
+.search-input {
+  display: flex;
+  flex-direction: row;
+}
+
+.list-item :hover {
+  transition: 0.3s ease-in-out;
+  background-color: #f83036;
+  color: #fff;
+}
+
+.list-title {
+  font-size: 1.5em;
+}

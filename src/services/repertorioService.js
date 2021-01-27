@@ -1,5 +1,5 @@
 import api from '../configuration/api';
-import ErroValidacao from '../exceptions/ErroValidacao';
+// import ErroValidacao from '../exceptions/ErroValidacao';
 import { mensagemErro } from '../components/toastr';
 const BASE_URI = '/repertorios';
 
@@ -31,23 +31,23 @@ export async function deletarPeloId(id) {
   });
 }
 
-function validar(item) {
-  const erros = [];
+// function validar(item) {
+//   const erros = [];
 
-  if (!item.nome) {
-    erros.push('O campo nome é obrigatório');
-  }
-  if (!item.artista) {
-    erros.push('O campo Artista é obrigatório');
-  }
-  if (!item.categoria) {
-    erros.push('O campo nome é obrigatório');
-  }
-  if (!item.urlVideo && !item.urlAudio) {
-    erros.push('Informe pelo menos uma referência de Vídeo ou Áudio.');
-  }
+//   if (!item.nome) {
+//     erros.push('O campo nome é obrigatório');
+//   }
+//   if (!item.artista) {
+//     erros.push('O campo Artista é obrigatório');
+//   }
+//   if (!item.categoria) {
+//     erros.push('O campo nome é obrigatório');
+//   }
+//   if (!item.urlVideo && !item.urlAudio) {
+//     erros.push('Informe pelo menos uma referência de Vídeo ou Áudio.');
+//   }
 
-  if (erros && erros.length > 0) {
-    throw new ErroValidacao(erros);
-  }
-}
+//   if (erros && erros.length > 0) {
+//     throw new ErroValidacao(erros);
+//   }
+// }
