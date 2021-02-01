@@ -5,6 +5,7 @@ import Container from '../../../components/Card';
 import Navbar from '../../../components/Navbar';
 import * as messages from '../../../components/toastr';
 import * as musicaService from '../../../services/musicaService';
+import * as repertorioService from '../../../services/repertorioService';
 import './cadastro.css';
 import { useSelector } from 'react-redux';
 import PickList from '../../../components/PickList';
@@ -21,24 +22,28 @@ function CadastroRepertorio(props) {
 
   useEffect(() => {
     atualizarOpcoes();
+    carregarRepertorio();
   }, []);
 
-  async function carregarMusica() {
+  async function carregarRepertorio() {
     if (idRepertorio) {
-      const data = await musicaService.buscarMusicaPeloId(idRepertorio);
-      setIdRepertorio(data.id);
-      setNome(data.nome);
-      setObservacoes(data.observacoes);
-      setMusicas(data.musicas);
+      const repertorio = await repertorioService.buscarPeloId(idRepertorio);
+      debugger;
+      setIdRepertorio(repertorio.id);
+      setNome(repertorio.nome);
+      setDataExecucao(repertorio.dataExecucao);
+      setObservacoes(repertorio.observacoes);
+      setMusicasSelecionadas(repertorio.musicas);
     }
   }
 
   async function atualizarOpcoes(valorProcurado) {
     if (valorProcurado) {
-      const musicas = await musicaService.buscarPeloNomeOuArtista(
-        valorProcurado
-      );
-      console.log(musicas);
+      let musicas = await musicaService.buscarPeloNomeOuArtista(valorProcurado);
+      musicasSelecionadas.forEach((musica) => {
+        musicas = musicas.filter((opcao) => opcao.id !== musica.id);
+      });
+
       setMusicas(musicas);
     }
   }
@@ -57,7 +62,8 @@ function CadastroRepertorio(props) {
         nome: nome,
         observacoes: observacoes,
         emailUsuario: email,
-        musicas: musicas,
+        dataExecucao: dataExecucao,
+        musicas: musicasSelecionadas,
       })
       .then(() => {
         messages.mensagemSucesso('salvo com sucesso!');
@@ -65,7 +71,7 @@ function CadastroRepertorio(props) {
       })
       .catch((error) => {
         messages.mensagemErro(
-          'Não foi possível salvar a música: ' + error.message
+          'Não foi possível salvar o repertório: ' + error.message
         );
       });
   }
@@ -73,7 +79,7 @@ function CadastroRepertorio(props) {
   function formCadastro() {
     return (
       <>
-        {redirecionar && <Redirect to="/musicas" />}
+        {redirecionar && <Redirect to="/repertorios" />}
         <form>
           <div className="row">
             <div className="form-group col-md-6">
@@ -83,7 +89,7 @@ function CadastroRepertorio(props) {
                 className="form-control"
                 id="inputNome"
                 value={nome}
-                placeholder="informe o nome da música"
+                placeholder="informe o nome do repertório"
                 onChange={(e) => setNome(e.target.value)}
               />
             </div>
@@ -94,7 +100,7 @@ function CadastroRepertorio(props) {
                 type="date"
                 className="form-control"
                 id="inputData"
-                value={nome}
+                value={dataExecucao}
                 placeholder="informe o nome da música"
                 onChange={(e) => setDataExecucao(e.target.value)}
               />

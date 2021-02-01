@@ -8,7 +8,7 @@ import './repertorio.css';
 function Repertorio() {
   const [repertorios, setRepertorios] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [repertorio, setRepertorio] = useState();
+  const [repertorioSelecionado, setRepertorio] = useState();
 
   async function listarRepertorios() {
     setLoading(true);
@@ -20,9 +20,11 @@ function Repertorio() {
   }
 
   async function deletar() {
-    service.deletarPeloId(repertorio.id);
+    service.deletarPeloId(repertorioSelecionado.id);
     setRepertorios(
-      repertorios.filter((repertorio) => repertorio.id !== repertorio.id)
+      repertorios.filter(
+        (repertorio) => repertorio.id !== repertorioSelecionado.id
+      )
     );
     mensagemSucesso('Repertório deletado com sucesso!');
   }
@@ -156,8 +158,8 @@ function Repertorio() {
               </button>
             </div>
             <div className="modal-body">
-              {repertorio &&
-                `Realmente deseja excluir o repertório ${repertorio.nome}?`}
+              {repertorioSelecionado &&
+                `Realmente deseja excluir o repertório ${repertorioSelecionado.nome}?`}
             </div>
             <div className="modal-footer">
               <button

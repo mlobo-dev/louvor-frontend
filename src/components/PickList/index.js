@@ -22,7 +22,6 @@ function PickList({
 
   async function removerItemSelecionado(id) {
     if (id) {
-      debugger;
       selecionadas = selecionadas.filter((musica) => musica.id != id);
       console.log(selecionadas);
       opcoes.push(await musicaService.buscarMusicaPeloId(id));

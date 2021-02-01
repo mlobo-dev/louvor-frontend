@@ -162,7 +162,7 @@ function CadastroMusica(props) {
 
             <Link
               className="btn btn-secondary mr-2 btn-cadastro"
-              to={'/musicas'}
+              to={'/repertorios'}
             >
               Voltar
             </Link>
